@@ -16,6 +16,13 @@ const createProduct = async function (req, res) {
 
         const { name, price } = data
 
+        if(Object.keys(data).length == 0){
+            return res.status(400).send({
+                status: false,
+                message: 'body should not be empty'
+            })
+        }
+
         if (!valid.isValid(name)) {
             return res.status(400).send({
                 status: false,

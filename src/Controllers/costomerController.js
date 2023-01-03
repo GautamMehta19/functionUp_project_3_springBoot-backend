@@ -9,6 +9,14 @@ const createCostomer = async function (req, res) {
 
         const { fname, lname, category, totalOrder } = data
 
+
+        if(Object.keys(data).length == 0){
+            return res.status(400).send({
+                status: false,
+                message: 'body should not be empty'
+            })
+        }
+
         if (!valid.isValid(fname)) {
             return res.status(400).send({
                 status: false,
@@ -69,5 +77,6 @@ const createCostomer = async function (req, res) {
         })
     }
 }
+
 
 module.exports = { createCostomer }

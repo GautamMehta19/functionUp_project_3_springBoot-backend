@@ -17,6 +17,13 @@ const createOrder = async function (req, res) {
         }
         const { productId, order } = data
 
+        if(Object.keys(data).length == 0){
+            return res.status(400).send({
+                status: false,
+                message: 'body should not be empty'
+            })
+        }
+
         if (!productId) {
             return res.status(400).send({
                 status: false,
