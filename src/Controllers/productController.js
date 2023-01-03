@@ -1,3 +1,4 @@
+const costomerModel = require('../Models/costomerModel')
 const productModel = require('../Models/productModel')
 const valid = require('../validation/valid.js')
 
@@ -44,6 +45,18 @@ const createProduct = async function (req, res) {
             })
         }
 
+        let discount 
+
+        let costomer = await costomerModel.findById({_id : costomerId})
+        if(costomer.category == 'gold'){
+            discount = (price*10)/100
+            data.discount = discount
+        }
+
+        if(costomer.category == 'platinum'){
+            discount = (price*20)/100
+            data.discount = discount
+        }
 
         let createdProduct = await productModel.create(data)
         return res.status(201).send({

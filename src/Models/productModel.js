@@ -12,6 +12,10 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true,
         trim: true
+    },
+
+    discount : {
+        type : Number
     }
 
 }, { timestamps: true })
