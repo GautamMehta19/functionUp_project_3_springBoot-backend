@@ -6,6 +6,8 @@ const orderController = require('../Controllers/orderController')
 
 
 Router.post('/createCostomer', costomerController.createCostomer)
+Router.get('/getCustomer/:customerId', costomerController.getCustomer)
+
 Router.post('/createProduct/:costomerId', productController.createProduct)
 Router.post('/createOrder/:costomerId', orderController.createOrder)
 

@@ -79,4 +79,57 @@ const createCostomer = async function (req, res) {
 }
 
 
-module.exports = { createCostomer }
+const getCustomer = async function (req, res){
+    try{
+
+        const customerId = req.params.customerId
+
+        if (!valid.isValidObjectId(customerId)) {
+            return res.status(400).send({
+                status: false,
+                message: "the given customerId is invalid"
+            })
+        }
+
+        let get = await costomertModel.findById({_id : customerId})
+
+        if(!get){
+            return res.status(404).send({
+                status: false,
+                message: "with this id customer not present in the database"
+            })
+        }
+        
+        if(get.category == 'gold'){
+            return res.status(200).send({
+                status : true,
+                message : "You are in Gold category so You have 10% discount on every product price",
+                data : get
+            })
+        }
+
+        if(get.category == 'platinum' ){
+            return res.status(200).send({
+                status : true,
+                message : "You are in Platinum category so You have 20% discount on every product price",
+                data : get
+            })
+        }
+
+        return res.status(200).send({
+            status : true,
+            message : "Customer details",
+            data : get
+        })
+
+    }
+    catch (err) {
+        return res.status(500).send({
+            status: false,
+            message: err.message
+        })
+    }
+}
+
+
+module.exports = { createCostomer, getCustomer }

@@ -48,6 +48,13 @@ const createProduct = async function (req, res) {
         let discount 
 
         let costomer = await costomerModel.findById({_id : costomerId})
+
+        if(!costomer){
+            return res.status(404).send({
+                status: false,
+                message: "costomer not exists in the database",
+            })
+        }
         if(costomer.category == 'gold'){
             discount = (price*10)/100
             data.discount = discount
