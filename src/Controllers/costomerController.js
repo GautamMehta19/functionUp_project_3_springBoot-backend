@@ -47,12 +47,16 @@ const createCostomer = async function (req, res) {
 
 
         if (category) {
-            if (category != 'regular' && category != 'gold' && category != 'platinum') {
-                return res.status(400).send({
-                    status: false,
-                    message: 'category should be only regular, gold, platinum'
-                })
-            }
+            // if (category != 'regular' && category != 'gold' && category != 'platinum') {
+            //     return res.status(400).send({
+            //         status: false,
+            //         message: 'category should be only regular, gold, platinum'
+            //     })
+            // }
+            return res.status(400).send({
+                status: false,
+                message: "You cant give category You can create without using category key"
+            })
         }
 
         if (totalOrder) {
