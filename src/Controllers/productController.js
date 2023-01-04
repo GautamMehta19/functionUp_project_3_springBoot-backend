@@ -1,4 +1,4 @@
-const costomerModel = require('../Models/costomerModel')
+const customerModel = require('../Models/customerModel')
 const productModel = require('../Models/productModel')
 const valid = require('../validation/valid.js')
 
@@ -6,12 +6,12 @@ const createProduct = async function (req, res) {
     try {
 
         let data = req.body
-        let costomerId = req.params.costomerId
+        let customerId = req.params.customerId
 
-        if (!valid.isValidObjectId(costomerId)) {
+        if (!valid.isValidObjectId(customerId)) {
             return res.status(400).send({
                 status: false,
-                message: "the given costomerId is invalid"
+                message: "the given customerId is invalid"
             })
         }
 
@@ -47,20 +47,20 @@ const createProduct = async function (req, res) {
 
         let discount 
 
-        let costomer = await costomerModel.findById({_id : costomerId})
+        let customer = await customerModel.findById({_id : customerId})
 
-        if(!costomer){
+        if(!customer){
             return res.status(404).send({
                 status: false,
-                message: "costomer not exists in the database",
+                message: "customer not exists in the database",
             })
         }
-        if(costomer.category == 'gold'){
+        if(customer.category == 'gold'){
             discount = (price*10)/100
             data.discount = discount
         }
 
-        if(costomer.category == 'platinum'){
+        if(customer.category == 'platinum'){
             discount = (price*20)/100
             data.discount = discount
         }

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const costomerSchema = new mongoose.Schema({
+const customerSchema = new mongoose.Schema({
 
     fname: {
         type: String,
@@ -29,4 +29,4 @@ const costomerSchema = new mongoose.Schema({
 
 }, { timestamp: true })
 
-module.exports = mongoose.model('costomer', costomerSchema)
+module.exports = mongoose.model('customer', customerSchema)

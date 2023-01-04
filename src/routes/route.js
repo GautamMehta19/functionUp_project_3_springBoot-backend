@@ -1,15 +1,15 @@
 const express = require("express")
 const Router = express.Router()
-const costomerController = require('../Controllers/costomerController')
+const customerController = require('../Controllers/customerController')
 const productController = require('../Controllers/productController')
 const orderController = require('../Controllers/orderController')
 
 
-Router.post('/createCostomer', costomerController.createCostomer)
-Router.get('/getCustomer/:customerId', costomerController.getCustomer)
+Router.post('/createCustomer', customerController.createCustomer)
+Router.get('/getCustomer/:customerId', customerController.getCustomer)
 
-Router.post('/createProduct/:costomerId', productController.createProduct)
-Router.post('/createOrder/:costomerId', orderController.createOrder)
+Router.post('/createProduct/:customerId', productController.createProduct)
+Router.post('/createOrder/:customerId', orderController.createOrder)
 
 Router.all("/**", function (req, res) {
     res.status(404).send({

@@ -1,8 +1,8 @@
-const costomertModel = require('../Models/costomerModel.js')
+const customertModel = require('../Models/customerModel.js')
 const valid = require('../validation/valid.js')
 
 
-const createCostomer = async function (req, res) {
+const createCustomer = async function (req, res) {
     try {
 
         let data = req.body
@@ -66,11 +66,11 @@ const createCostomer = async function (req, res) {
             })
         }
 
-        let createdCostomer = await costomertModel.create(data)
+        let createdCustomer = await customertModel.create(data)
         return res.status(201).send({
             status: true,
-            message: 'costomer suceesfully created',
-            data: createdCostomer
+            message: 'customer suceesfully created',
+            data: createdCustomer
         })
 
     }
@@ -95,7 +95,7 @@ const getCustomer = async function (req, res){
             })
         }
 
-        let get = await costomertModel.findById({_id : customerId})
+        let get = await customertModel.findById({_id : customerId})
 
         if(!get){
             return res.status(404).send({
@@ -136,4 +136,4 @@ const getCustomer = async function (req, res){
 }
 
 
-module.exports = { createCostomer, getCustomer }
+module.exports = { createCustomer, getCustomer }
