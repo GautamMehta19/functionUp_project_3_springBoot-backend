@@ -1,9 +1,9 @@
-const expres = require('express')
+const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const route = require("./routes/route.js")
 
-const app = expres()
+const app = express()
 
 app.use(bodyParser.json())
 
@@ -16,5 +16,5 @@ mongoose.connect("mongodb+srv://gautam:gautam123@cluster0.xorxp.mongodb.net/func
 app.use('/', route)
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('Port is running on port no. ', process.env.PORT || 3000)
+    console.log('Port is running on port no.', process.env.PORT || 3000)
 })
